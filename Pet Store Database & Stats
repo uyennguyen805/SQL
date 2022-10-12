@@ -1,0 +1,16 @@
+-- Create a table for pet store base 
+CREATE TABLE inventory (id INTEGER PRIMARY KEY, food_type TEXT, brand TEXT, price INTEGER, quantity INTEGER, sold INTEGER);
+
+INSERT INTO inventory VALUES (1, "cat_food", "Hill", 20, 40, 10);
+INSERT INTO inventory VALUES (2, "dog_food", "Hill", 30, 50, 35);
+INSERT INTO inventory VALUES (3, "fish_good", "store_brand", 10, 50, 5);
+INSERT INTO inventory VALUES (4, "bird_food", "store_brand", 25, 50, 10); 
+
+-- display order by price.
+SELECT * FROM inventory
+ORDER BY price
+
+-- What is the most popular food type sold in store? 
+SELECT food_type, price, sold 
+FROM inventory 
+ORDER BY sold desc limit 5; 
