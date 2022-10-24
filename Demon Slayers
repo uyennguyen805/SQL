@@ -1,0 +1,66 @@
+CREATE TABLE hashira (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, personality TEXT, ranks INTEGER); 
+
+INSERT INTO hashira VALUES (1, "Gyomei Himejia", 26, "INFJ", 1);
+INSERT INTO hashira VALUES (2, "Kyojuro Rengoku
+", 20, "ENFJ", 2);
+INSERT INTO hashira VALUES (3, "Giyu Tomioka
+", 19, "ISTJ", 3);
+INSERT INTO hashira VALUES (4, "Sanemi  Shinazugawa
+", 21, "ESTJ", 4);
+INSERT INTO hashira VALUES (5, "Tengen Uzui
+", 23, "ESTP", 5);
+INSERT INTO hashira VALUES (6, "Obanai Iguro
+", 21, "ISTJ", 6);
+INSERT INTO hashira VALUES (7, "Mitsuri Kanroji
+", 19, "INFP", 7);
+INSERT INTO hashira VALUES (8, "Muichiro Tokito
+", 14, "INFP", 8);
+INSERT INTO hashira VALUES (9, "Shinobu Kocho
+", 18, "INTJ", 9);
+
+CREATE TABLE upper_moons (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, personality TEXT, ranks INTEGER);
+
+INSERT INTO upper_moons VALUES (1, "Kokushibo", 20, "INTJ", 1);
+INSERT INTO upper_moons VALUES (2, "Doma", 20, "ENFJ", 2);
+INSERT INTO upper_moons VALUES (3, "Akaza", 18, "ESTP", 3);
+INSERT INTO upper_moons VALUES (4, "Nakime", null, "INTJ", 4);
+INSERT INTO upper_moons VALUES (5, "Gyokko", null, "ESFP", 5);
+INSERT INTO upper_moons VALUES (6, "Daki", 13, "ESFP", 6);
+INSERT INTO upper_moons VALUES (7, "Gyutaro", 13, "ISFP", 6);
+
+CREATE TABLE battle_pairs (id INTEGER PRIMARY KEY, 
+    battle1_id INTEGER, 
+    battle2_id INTEGER);
+
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(2, 3);
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(5, 6); 
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(8, 5);
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(7, 4); 
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(9, 2); 
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(1, 1);
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(3, 1); 
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(4, 1); 
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(8, 3); 
+INSERT INTO battle_pairs (battle1_id, battle2_id) 
+    VALUES(5, 7); 
+
+SELECT hashira.name, upper_moons.name, upper_moons.personality
+    FROM hashira
+    LEFT JOIN upper_moons
+    ON hashira.id = upper_moons.id;
+    
+SELECT a.name AS hashira, b.name as upper_moons
+    FROM battle_pairs bp 
+    JOIN hashira a
+    ON bp.battle1_id=a.id
+    JOIN upper_moons b 
+    ON bp.battle2_id=b.id; 
